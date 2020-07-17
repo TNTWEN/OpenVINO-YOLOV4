@@ -39,7 +39,7 @@ python object_detection_demo_yolov3_async.py -i cam -m yolov4/frozen_darknet_yol
 
 ```
 
-This is OpenVINOR4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
+This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
 
 We still  need to update the "object_detection_demo_yolov3_async.py" to better adapt to the YOLOV4 in the future
 
