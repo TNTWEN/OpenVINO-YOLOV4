@@ -56,9 +56,9 @@ def _yolo_res_Block(inputs,in_channels,res_num,data_format,double_ch=False):
     out_channels = in_channels
     if double_ch:
         out_channels = in_channels * 2
-    net = _conv2d_fixed_padding(inputs,in_channels*2,kernel_size=3,strides=2)#cov后分支
-    route = _conv2d_fixed_padding(net,out_channels,kernel_size=1)#右
-    net = _conv2d_fixed_padding(net,out_channels,kernel_size=1)#左
+    net = _conv2d_fixed_padding(inputs,in_channels*2,kernel_size=3,strides=2)
+    route = _conv2d_fixed_padding(net,out_channels,kernel_size=1)
+    net = _conv2d_fixed_padding(net,out_channels,kernel_size=1)
 
     for _ in range(res_num):
         tmp=net
@@ -96,7 +96,7 @@ def _spp_block(inputs, data_format='NCHW'):
                      axis=1 if data_format == 'NCHW' else 3)
 
 
-def _upsample(inputs, out_shape, data_format='NCHW'):#未concat
+def _upsample(inputs, out_shape, data_format='NCHW'):
     # tf.image.resize_nearest_neighbor accepts input in format NHWC
     if data_format == 'NCHW':
         inputs = tf.transpose(inputs, [0, 2, 3, 1])
@@ -275,7 +275,7 @@ def yolo_v3(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
                             activation_fn=lambda x: tf.nn.leaky_relu(x, alpha=_LEAKY_RELU)):
             #weights_regularizer=slim.l2_regularizer(weight_decay)
             #weights_initializer=tf.truncated_normal_initializer(0.0, 0.01)
-            with tf.variable_scope('darknet-53'):#暂时不改
+            with tf.variable_scope('darknet-53'):
                 route_1, route_2, route_3 = csp_darknet53(inputs,data_format)
 
             with tf.variable_scope('yolo-v3'):
@@ -307,7 +307,7 @@ def yolo_v3(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
                 detections = tf.identity(detections, name='detections')
                 return detections
 
-#### 不用
+#### not use
 def yolo_v3_spp(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
     """
     Creates YOLO v3 with SPP  model.

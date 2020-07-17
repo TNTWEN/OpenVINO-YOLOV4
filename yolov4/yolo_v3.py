@@ -56,9 +56,9 @@ def _yolo_res_Block(inputs,in_channels,res_num,data_format,double_ch=False):
     out_channels = in_channels
     if double_ch:
         out_channels = in_channels * 2
-    net = _conv2d_fixed_padding(inputs,in_channels*2,kernel_size=3,strides=2)#cov后分支
-    route = _conv2d_fixed_padding(net,out_channels,kernel_size=1)#右
-    net = _conv2d_fixed_padding(net,out_channels,kernel_size=1)#左
+    net = _conv2d_fixed_padding(inputs,in_channels*2,kernel_size=3,strides=2)
+    route = _conv2d_fixed_padding(net,out_channels,kernel_size=1)
+    net = _conv2d_fixed_padding(net,out_channels,kernel_size=1)
 
     for _ in range(res_num):
         tmp=net
