@@ -1,5 +1,3 @@
-[TOC]
-
 # OpenVINO-YOLOV4
 
 ## Introduction
@@ -91,6 +89,12 @@ warning：C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_too
 --CPU: NAN error
 --GPU: demo can run, but can't detect objects correctly,maybe need to update object_detection_demo_yolov3_async.py
 ```
+
+
+
+
+
+
 
 ```
 _,split=tf.split(net,num_or_size_splits=2,axis=1 if data_format =="NCHW" else 3)
