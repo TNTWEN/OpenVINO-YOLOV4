@@ -18,7 +18,7 @@ YOLOV4:https://github.com/AlexeyAB/darknet   and download weights file
 
 ## How to use
 
-Openvino demo has scope restrictions.So in my code,i keep the YOLOV3 scope name,only rebuild YOLOV4 structure
+OpenVINO demo has scope restrictions.So in my code,i keep the YOLOV3 scope name,only rebuild YOLOV4 structure
 
 ### YOLOV4
 
@@ -113,4 +113,4 @@ so i use
 
 to replace tf.split().  
 
-You clould find it in yolo_v3_tiny.py .  I'm not sure whether that will lead to mistakes
+You could find it in yolo_v3_tiny.py .  I'm not sure whether that will lead to mistakes
