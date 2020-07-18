@@ -38,6 +38,7 @@ python object_detection_demo_yolov3_async.py -i cam -m yolov4/frozen_darknet_yol
 
 
 ```
+yourfile means the path to "mo.py",for example "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools\model_optimizer\mo.py" for windows
 
 This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
 
