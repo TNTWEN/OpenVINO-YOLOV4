@@ -75,42 +75,5 @@ python yourfile/mo.py --input_model frozen_darknet_yolov3_model.pb --tensorflow_
 ```
 
 Existing problems:
-
-Test on windows:
-
-```
-# convert .pb to IR.I'm not sure whether this warning will cause problems
-
-warning：C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools\model_optimizer\mo\middle\passes\fusing\decomposition.py:69: RuntimeWarning: invalid value encountered in sqrt
-  scale = 1. / np.sqrt(variance.data.get_value() + eps)
-```
-
-```
-# run the demo
---CPU: NAN error
---GPU: demo can run, but can't detect objects correctly,maybe need to update object_detection_demo_yolov3_async.py
-```
-
-
-
-
-
-
-
-```
-_,split=tf.split(net,num_or_size_splits=2,axis=1 if data_format =="NCHW" else 3)
-```
-
-was not supported by OpenVINO yet.
-
-
-
-so i use
-
-```
-    split =net[:,int(in_channels/2):,:,:]if data_format=="NCHW" else net[:,:,:,int(in_channels/2):]
-```
-
-to replace tf.split().  
-
-You could find it in yolo_v3_tiny.py .  I'm not sure whether that will lead to mistakes
+fix some bugs ,but yolov4-tiny still detect nothing. 
+ 
