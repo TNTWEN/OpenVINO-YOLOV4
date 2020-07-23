@@ -45,7 +45,7 @@ This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,
 
 We still  need to update the "object_detection_demo_yolov3_async.py" to better adapt to the YOLOV4 in the future
 
- ![yolov4](yolov4.png)
+ ![yolov4](assets/yolov4.png)
 
 CPU(intel i5-8250U)
 
