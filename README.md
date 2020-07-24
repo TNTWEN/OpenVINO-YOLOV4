@@ -49,6 +49,8 @@ We still  need to update the "object_detection_demo_yolov3_async.py" to better a
 
 CPU(intel i5-8250U)
 
+if you come up with some errors about "monitors" module when running this demo.you could try assets/object_detection_demo_yolov3_async.py temporarily.This is the demo without using monitors.
+
 ### YOLOV4-RELU
 
 download yolov4.weights .  
