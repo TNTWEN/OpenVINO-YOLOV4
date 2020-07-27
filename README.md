@@ -48,10 +48,6 @@ This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,
 
 CPU(intel i5-8250U)
 
-
-**Until now：
-   object_detection_demo_yolov4_async.py：(1)Add DIOU-NMSsupport **
-
 ### YOLOV4-RELU
 
 download yolov4.weights .  
@@ -90,3 +86,5 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 Existing problems:
 i have verified the model  structure but yolov4-tiny still detect nothing. Welcome to communicate together to solve this problem
 
+### object_detection_demo_yolov4_async.py
+(1)Add DIOU-NMSsupport
