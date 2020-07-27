@@ -43,11 +43,12 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 
 This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
 
-We still  need to update the "object_detection_demo_yolov3_async.py" to better adapt to the YOLOV4 in the future
 
  ![yolov4](assets/yolov4.png)
 
 CPU(intel i5-8250U)
+Until now：
+   object_detection_demo_yolov4_async.py：(1)Add DIOU-NMSsupport
 
 ### YOLOV4-RELU
 
