@@ -47,8 +47,10 @@ This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,
  ![yolov4](assets/yolov4.png)
 
 CPU(intel i5-8250U)
-Until now：
-   object_detection_demo_yolov4_async.py：(1)Add DIOU-NMSsupport
+
+
+**Until now：
+   object_detection_demo_yolov4_async.py：(1)Add DIOU-NMSsupport **
 
 ### YOLOV4-RELU
 
