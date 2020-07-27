@@ -87,4 +87,4 @@ Existing problems:
 i have verified the model  structure but yolov4-tiny still detect nothing. Welcome to communicate together to solve this problem
 
 ### object_detection_demo_yolov4_async.py
-(1)Add DIOU-NMSsupport
+(1)Add DIOU-NMS Support
