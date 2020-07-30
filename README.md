@@ -2,9 +2,7 @@
 
 ## Introduction
 
- This is the implementation of YOLOV4,YOLOV4-RELU,YOLOV4-Tiny in OpenVINO2020R4 .
-
-I have verified the implementation of yolov4 and yolov4-relu.But there are still some problems in yolov4-tiny
+ This is the implementation of YOLOV4,YOLOV4-RELU,YOLOV4-TINY in OpenVINO2020R4 .
 
 This update has replaced all v3 interfaces name with v4.  In addition to  the JSON file:  "id": "TFYOLOV3"(demo code needs to be modified if  "id": "TFYOLOV4  is used) .we want to make sure that you can run the demo on your PC directly
 
