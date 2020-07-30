@@ -28,9 +28,9 @@ tf.app.flags.DEFINE_integer(
 
 def main(argv=None):
     if FLAGS.tiny:
-        model = yolo_v4_tiny.yolo_v3_tiny
+        model = yolo_v4_tiny.yolo_v4_tiny
     else:
-        model = yolo_v4.yolo_v3
+        model = yolo_v4.yolo_v4
 
     classes = load_coco_names(FLAGS.class_names)
 
