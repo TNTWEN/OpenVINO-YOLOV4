@@ -19,14 +19,14 @@ def _tiny_res_block(inputs,in_channels,data_format):
 
     route = net
     #_,split=tf.split(net,num_or_size_splits=2,axis=1 if data_format =="NCHW" else 3)
-    split = net[:, in_channels//2:, :, :]if data_format=="NCHW" else net[:, :, :, :in_channels//2]
+    split = net[:, in_channels//2:, :, :]if data_format=="NCHW" else net[:, :, :, in_channels//2:]
     net = _conv2d_fixed_padding(split,in_channels//2,kernel_size=3)
     route1 = net
     net = _conv2d_fixed_padding(net,in_channels//2,kernel_size=3)
     net = tf.concat([net, route1], axis=1 if data_format == 'NCHW' else 3)
     net = _conv2d_fixed_padding(net,in_channels,kernel_size=1)
     feat = net
-    net = tf.concat([net, route], axis=1 if data_format == 'NCHW' else 3)
+    net = tf.concat([route, net], axis=1 if data_format == 'NCHW' else 3)
     net = slim.max_pool2d(
         net, [2, 2], scope='pool2')
     return net,feat
