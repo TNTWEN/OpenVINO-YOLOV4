@@ -242,7 +242,7 @@ def _detection_layer(inputs, num_classes, anchors, img_size, data_format):
 
 
 
-def yolo_v3(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False, with_spp=False):
+def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
     """
     Creates YOLO v4 model.
 
