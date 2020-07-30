@@ -83,8 +83,7 @@ python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
 
-Existing problems:
-i have verified the model  structure but yolov4-tiny still detect nothing. Welcome to communicate together to solve this problem
+when you convert .pb to IR,it is difficult to avoid the loss of accuracy(just like yolov3.tiny).if you couldn't detect objects correctly, you could train yolov4-tiny.weights again (https://github.com/AlexeyAB/darknet)
 
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
