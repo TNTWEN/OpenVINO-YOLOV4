@@ -34,7 +34,7 @@ def _tiny_res_block(inputs,in_channels,data_format):
 
 
 
-def yolo_v3_tiny(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
+def yolo_v4_tiny(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
     """
     Creates YOLO v4 tiny model.
 
