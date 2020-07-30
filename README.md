@@ -2,7 +2,7 @@
 
 ## Introduction
 
- This is the implementation of YOLOV4,YOLOV4-RELU,YOLOV4-TINY in OpenVINO2020R4 .
+ This is the implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny in OpenVINO2020R4 .
 
 This update has replaced all v3 interfaces name with v4.  In addition to  the JSON file:  "id": "TFYOLOV3"(demo code needs to be modified if  "id": "TFYOLOV4  is used) .we want to make sure that you can run the demo on your PC directly
 
@@ -46,7 +46,7 @@ This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,
 
 CPU(intel i5-8250U)
 
-### YOLOV4-RELU
+### YOLOV4-relu
 
 download yolov4.weights .  
 
@@ -65,7 +65,7 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 
 
 
-### YOLOV4-TINY
+### YOLOV4-tiny
 
 download yolov4-tiny.weights .  
 
@@ -81,7 +81,7 @@ python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
 
-when you convert .pb to IR,it is difficult to avoid the loss of accuracy(just like yolov3.tiny).if you couldn't detect objects correctly, you could train yolov4-tiny.weights again (https://github.com/AlexeyAB/darknet)
+when you convert .pb to IR,it is difficult to avoid the loss of accuracy(just like yolov3-tiny).if you couldn't detect objects correctly, you could further train yolov4-tiny.weights  (https://github.com/AlexeyAB/darknet)
 
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
