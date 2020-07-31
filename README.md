@@ -81,7 +81,7 @@ python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
 
-Until now, v4tiny still has the problem of large loss of accuracy, I will try to solve it
+
 
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
