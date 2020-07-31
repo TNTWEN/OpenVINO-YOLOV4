@@ -44,9 +44,12 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
 
 
- ![yolov4](assets/yolov4-608.png)
+ ![OpenVINOyolov4](assets/yolov4-416.png)
 
 CPU(intel i5-8250U)
+
+Compared with darknet:
+ ![darknetyolov4](assets/darknet-v4-416.png)
 
 ### YOLOV4-relu
 
@@ -83,7 +86,9 @@ python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
 
- ![yolov4](assets/yolov4tiny416.png)
-
+ ![OpenVINOyolov4tiny](assets/yolov4tiny416.png)
+ 
+Compared with darknet:
+ ![darknetyolov4tiny](assets/darknet-v4tiny-416.png)
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
