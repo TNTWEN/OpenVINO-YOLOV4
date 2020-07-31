@@ -14,6 +14,8 @@ OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html
 
 Win or Ubuntu
 
+Tensorflow 1.12.0
+
 YOLOV4:https://github.com/AlexeyAB/darknet   and download weights file
 
 *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
@@ -42,7 +44,7 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
 
 
- ![yolov4](assets/yolov4.png)
+ ![yolov4](assets/yolov4-608.png)
 
 CPU(intel i5-8250U)
 
@@ -81,7 +83,7 @@ python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
 
-
+ ![yolov4](assets/yolov4tiny416.png)
 
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
