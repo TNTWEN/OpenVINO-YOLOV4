@@ -96,7 +96,7 @@ def yolo_v4_tiny(inputs, num_classes, is_training=False, data_format='NCHW', reu
                     net = _conv2d_fixed_padding(route,128,kernel_size=1)
                     upsample_size = feat.get_shape().as_list()
                     net = _upsample(net, upsample_size, data_format)
-                    net = tf.concat([feat, net], axis=1 if data_format == 'NCHW' else 3)
+                    net = tf.concat([net,feat], axis=1 if data_format == 'NCHW' else 3)
                     net = _conv2d_fixed_padding(net,256,kernel_size=3)
                     detect_2 = _detection_layer(
                         net, num_classes, _ANCHORS[1:4], img_size, data_format)
