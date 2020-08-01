@@ -3,7 +3,8 @@
 ## Introduction
 
  This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny in OpenVINO2020R4 .
-Based on https://github.com/mystic123/tensorflow-yolo-v3
+ 
+ Based on https://github.com/mystic123/tensorflow-yolo-v3
 
 ## Environment
 
