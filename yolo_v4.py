@@ -56,9 +56,9 @@ def _yolo_res_Block(inputs,in_channels,res_num,data_format,double_ch=False):
     out_channels = in_channels
     if double_ch:
         out_channels = in_channels * 2
-    net = _conv2d_fixed_padding(inputs,in_channels*2,kernel_size=3,strides=2)#cov后分支
-    route = _conv2d_fixed_padding(net,out_channels,kernel_size=1)#右
-    net = _conv2d_fixed_padding(net,out_channels,kernel_size=1)#左
+    net = _conv2d_fixed_padding(inputs,in_channels*2,kernel_size=3,strides=2)
+    route = _conv2d_fixed_padding(net,out_channels,kernel_size=1)
+    net = _conv2d_fixed_padding(net,out_channels,kernel_size=1)
 
     for _ in range(res_num):
         tmp=net
@@ -96,7 +96,7 @@ def _spp_block(inputs, data_format='NCHW'):
                      axis=1 if data_format == 'NCHW' else 3)
 
 
-def _upsample(inputs, out_shape, data_format='NCHW'):#未concat
+def _upsample(inputs, out_shape, data_format='NCHW'):
     # tf.image.resize_nearest_neighbor accepts input in format NHWC
     if data_format == 'NCHW':
         inputs = tf.transpose(inputs, [0, 2, 3, 1])
