@@ -92,5 +92,5 @@ Compared with darknet:
  ![darknetyolov4tiny](assets/darknet-v4tiny-416.jpg)
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
-OpenVINOv4tiny with DIOU-NMS:
  ![OpenVINOyolov4tinywithDIOU-NMS](assets/DIOU-NMS.png)
+ OpenVINOv4tiny with DIOU-NMS
