@@ -96,7 +96,7 @@ def _spp_block(inputs, data_format='NCHW'):
                      axis=1 if data_format == 'NCHW' else 3)
 
 
-def _upsample(inputs, out_shape, data_format='NCHW'):#未concat
+def _upsample(inputs, out_shape, data_format='NCHW'):
     # tf.image.resize_nearest_neighbor accepts input in format NHWC
     if data_format == 'NCHW':
         inputs = tf.transpose(inputs, [0, 2, 3, 1])
@@ -233,10 +233,10 @@ def _detection_layer(inputs, num_classes, anchors, img_size, data_format):
 
 
 
-#暂时不改函数名字
-def yolo_v3(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False, with_spp=False):
+
+def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
     """
-    Creates YOLO v3 model.
+    Creates YOLO v4 model.
 
     :param inputs: a 4-D tensor of size [batch_size, height, width, channels].
         Dimension batch_size may be undefined. The channel order is RGB.
@@ -244,7 +244,6 @@ def yolo_v3(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
     :param is_training: whether is training or not.
     :param data_format: data format NCHW or NHWC.
     :param reuse: whether or not the network and its variables should be reused.
-    :param with_spp: whether or not is using spp layer.
     :return:
     """
 
