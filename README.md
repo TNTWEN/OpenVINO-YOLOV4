@@ -2,11 +2,8 @@
 
 ## Introduction
 
- This is the implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny in OpenVINO2020R4 .
-
-This update has replaced all v3 interfaces name with v4.  In addition to  the JSON file:  "id": "TFYOLOV3"(demo code needs to be modified if  "id": "TFYOLOV4  is used) .we want to make sure that you can run the demo on your PC directly
-
-
+ This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny in OpenVINO2020R4 .
+Based on https://github.com/mystic123/tensorflow-yolo-v3
 
 ## Environment
 
