@@ -2,8 +2,8 @@
 
 import numpy as np
 import tensorflow as tf
-import yolo_v3
-import yolo_v3_tiny
+import yolo_v4
+import yolo_v4_tiny
 from PIL import Image, ImageDraw
 
 from utils import load_weights, load_coco_names, detections_boxes, freeze_graph
@@ -28,9 +28,9 @@ tf.app.flags.DEFINE_integer(
 
 def main(argv=None):
     if FLAGS.tiny:
-        model = yolo_v3_tiny.yolo_v3_tiny
+        model = yolo_v4_tiny.yolo_v4_tiny
     else:
-        model = yolo_v3.yolo_v3
+        model = yolo_v4.yolo_v4
 
     classes = load_coco_names(FLAGS.class_names)
 
