@@ -102,11 +102,11 @@ def _upsample(inputs, out_shape, data_format='NCHW'):
         inputs = tf.transpose(inputs, [0, 2, 3, 1])
 
     if data_format == 'NCHW':
-        new_height = out_shape[3]
-        new_width = out_shape[2]
-    else:
         new_height = out_shape[2]
-        new_width = out_shape[1]
+        new_width = out_shape[3]
+    else:
+        new_height = out_shape[1]
+        new_width = out_shape[2]
 
     inputs = tf.image.resize_nearest_neighbor(inputs, (new_height, new_width))
 
