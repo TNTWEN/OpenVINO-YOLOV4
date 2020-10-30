@@ -3,7 +3,7 @@
 ## Introduction
 
  This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny in OpenVINO2020R4 .
- 
+
  Based on https://github.com/mystic123/tensorflow-yolo-v3
 
 ## Environment
@@ -17,6 +17,10 @@ Tensorflow 1.12.0
 YOLOV4:https://github.com/AlexeyAB/darknet   and download weights file
 
 *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
+
+## Latest progress
+
+- OpenVINO2021.1 ：Switch to  branch OpenVINO2021.1（https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/OpenVINO2021.1）
 
 ## How to use
 
@@ -85,7 +89,7 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 ```
 
  ![OpenVINOyolov4tiny](assets/yolov4tiny416.png)
- 
+
 Compared with darknet:
  ![darknetyolov4tiny](assets/darknet-v4tiny-416.jpg)
 ### object_detection_demo_yolov4_async.py
