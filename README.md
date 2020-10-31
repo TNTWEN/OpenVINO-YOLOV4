@@ -18,9 +18,6 @@ YOLOV4:https://github.com/AlexeyAB/darknet   and download weights file
 
 *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
 
-## Latest progress
-
-- OpenVINO2021.1 ：Switch to  branch OpenVINO2021.1（https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/OpenVINO2021.1）
 
 ## How to use
 
