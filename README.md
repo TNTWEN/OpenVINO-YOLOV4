@@ -5,6 +5,10 @@
  This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny in OpenVINO2020R4 .
 
  Based on https://github.com/mystic123/tensorflow-yolo-v3
+ 
+## Latest Progress
+Pruned-OpenVINO-YOLO：https://github.com/TNTWEN/Pruned-OpenVINO-YOLO
+A tutorial on pruning the YOLOv3/v4 model(find the most compact model structure for the current detection task)and deploying it on OpenVINO. Currently only available in Chinese. Welcome to have a try!
 
 ## Environment
 
@@ -91,3 +95,5 @@ Compared with darknet:
  ![darknetyolov4tiny](assets/darknet-v4tiny-416.jpg)
 ### object_detection_demo_yolov4_async.py
 (1)Add DIOU-NMS Support
+
+
