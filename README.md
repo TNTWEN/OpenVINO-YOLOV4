@@ -11,9 +11,12 @@ Pruned-OpenVINO-YOLO：https://github.com/TNTWEN/Pruned-OpenVINO-YOLO
 
 A tutorial on pruning the YOLOv3/v4 model(find the most compact model structure for the current detection task)and deploying it on OpenVINO which can even meet the simultaneous inference of multiple video streams. Both Chinese and English versions are available. Welcome to have a try!
 
+## FAQ 
+[FAQ](https://github.com/TNTWEN/OpenVINO-YOLOV4/issues/10)
+
 ## Environment
 
-OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html
+OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html     or newer (please see FAQ Point 11)
 
 Win or Ubuntu
 
