@@ -240,11 +240,27 @@ def _detection_layer(inputs, num_classes, anchors, img_size, data_format):
     return predictions
 
 
+def _tiny_res_block(inputs,in_channels,data_format):
+    net = _conv2d_fixed_padding(inputs,in_channels,kernel_size=3)
+
+    route = net
+    #_,split=tf.split(net,num_or_size_splits=2,axis=1 if data_format =="NCHW" else 3)
+    split = net[:, in_channels//2:, :, :]if data_format=="NCHW" else net[:, :, :, in_channels//2:]
+    net = _conv2d_fixed_padding(split,in_channels//2,kernel_size=3)
+    route1 = net
+    net = _conv2d_fixed_padding(net,in_channels//2,kernel_size=3)
+    net = tf.concat([net, route1], axis=1 if data_format == 'NCHW' else 3)
+    net = _conv2d_fixed_padding(net,in_channels,kernel_size=1)
+    feat = net
+    net = tf.concat([route, net], axis=1 if data_format == 'NCHW' else 3)
+    net = slim.max_pool2d(
+        net, [2, 2], scope='pool2')
+    return net,feat
 
 
 def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
     """
-    Creates YOLO v4 model.
+    Creates YOLO-v4-tiny-3l model.
 
     :param inputs: a 4-D tensor of size [batch_size, height, width, channels].
         Dimension batch_size may be undefined. The channel order is RGB.
@@ -275,44 +291,53 @@ def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
         'fused': None,  # Use fused batch norm if possible.
     }
 
+
     # Set activation_fn and parameters for conv2d, batch_norm.
-    with slim.arg_scope([slim.conv2d, slim.batch_norm, _fixed_padding], data_format=data_format, reuse=reuse):
+    with slim.arg_scope([slim.conv2d, slim.batch_norm, _fixed_padding, slim.max_pool2d], data_format=data_format):
+        with slim.arg_scope([slim.conv2d, slim.batch_norm, _fixed_padding], reuse=reuse):
+            with slim.arg_scope([slim.conv2d],
+                                normalizer_fn=slim.batch_norm,
+                                normalizer_params=batch_norm_params,
+                                biases_initializer=None,
+                                activation_fn=lambda x: tf.nn.leaky_relu(x, alpha=_LEAKY_RELU)):
 
-            #weights_regularizer=slim.l2_regularizer(weight_decay)
-            #weights_initializer=tf.truncated_normal_initializer(0.0, 0.01)
-        with tf.variable_scope('cspdarknet-53'):
-            route_1, route_2, route_3 = csp_darknet53(inputs,data_format,batch_norm_params)
+                with tf.variable_scope('yolo-v4'):
+                    #CSPDARKENT BEGIN
+                    net = _conv2d_fixed_padding(inputs,32,kernel_size=3,strides=2)
 
-        with slim.arg_scope([slim.conv2d], normalizer_fn=slim.batch_norm,
-                            normalizer_params=batch_norm_params,
-                            biases_initializer=None,
-                            activation_fn=lambda x: tf.nn.leaky_relu(x, alpha=_LEAKY_RELU)):
-            with tf.variable_scope('yolo-v4'):
-                #features of y1
-                net = _conv2d_fixed_padding(route_1,256,kernel_size=3)
-                detect_1 = _detection_layer(
-                    net, num_classes, _ANCHORS[0:3], img_size, data_format)
-                detect_1 = tf.identity(detect_1, name='detect_1')
+                    net = _conv2d_fixed_padding(net, 64, kernel_size=3,strides=2)
 
-                #features of y2
-                net = _conv2d_fixed_padding(route_1, 256, kernel_size=3,strides=2)
-                net=tf.concat([net,route_2], axis=1 if data_format == 'NCHW' else 3)
-                net=_yolo_conv_block(net,512,2,1)
-                route_147 =net
-                net = _conv2d_fixed_padding(net,512,kernel_size=3)
-                detect_2 = _detection_layer(
-                    net, num_classes, _ANCHORS[3:6], img_size, data_format)
-                detect_2 = tf.identity(detect_2, name='detect_2')
+                    net,_ = _tiny_res_block(net,64,data_format)
+                    net,feat = _tiny_res_block(net,128,data_format)
+                    net,feat2 = _tiny_res_block(net,256,data_format)
+                    net = _conv2d_fixed_padding(net,512,kernel_size=3)
+                    feat3=net
+                    #CSPDARKNET END
 
-                # features of  y3
-                net=_conv2d_fixed_padding(route_147,512,strides=2,kernel_size=3)
-                net = tf.concat([net, route_3], axis=1 if data_format == 'NCHW' else 3)
-                net = _yolo_conv_block(net,1024,3,0)
-                detect_3 = _detection_layer(
-                    net, num_classes, _ANCHORS[6:9], img_size, data_format)
-                detect_3 = tf.identity(detect_3, name='detect_3')
+                    net=_conv2d_fixed_padding(feat3,256,kernel_size=1)
+                    route = net
+                    net = _conv2d_fixed_padding(route,512,kernel_size=3)
+                    detect_1 = _detection_layer(
+                        net, num_classes, _ANCHORS[6:9], img_size, data_format)
+                    detect_1 = tf.identity(detect_1, name='detect_1')
+                    net = _conv2d_fixed_padding(route,128,kernel_size=1)
+                    upsample_size = feat2.get_shape().as_list()
+                    net = _upsample(net, upsample_size, data_format)
+                    net = tf.concat([net,feat2], axis=1 if data_format == 'NCHW' else 3)
+                    net = _conv2d_fixed_padding(net,256,kernel_size=3)
+                    route = net
+                    detect_2 = _detection_layer(
+                        net, num_classes, _ANCHORS[3:6], img_size, data_format)
+                    detect_2 = tf.identity(detect_2, name='detect_2')
+                    net = _conv2d_fixed_padding(route,64,kernel_size=1)
+                    upsample_size = feat.get_shape().as_list()
+                    net = _upsample(net, upsample_size, data_format)
+                    net = tf.concat([net,feat], axis=1 if data_format == 'NCHW' else 3)
+                    net = _conv2d_fixed_padding(net,128,kernel_size=3)
+                    detect_3 = _detection_layer( net, num_classes, _ANCHORS[0:3], img_size, data_format)
+                    detect_3 = tf.identity(detect_3, name='detect_3')
 
-                detections = tf.concat([detect_1, detect_2, detect_3], axis=1)
-                detections = tf.identity(detections, name='detections')
-                return detections
+                    detections = tf.concat([detect_1, detect_2,detect_3], axis=1)
+                    detections = tf.identity(detections, name='detections')
+                    return detections
 

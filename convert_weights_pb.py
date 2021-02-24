@@ -3,7 +3,6 @@
 import numpy as np
 import tensorflow as tf
 import yolo_v4
-import yolo_v4_tiny
 from PIL import Image, ImageDraw
 
 from utils import load_weights, load_coco_names, detections_boxes, freeze_graph
@@ -19,18 +18,13 @@ tf.app.flags.DEFINE_string(
 tf.app.flags.DEFINE_string(
     'output_graph', 'frozen_darknet_yolov4_model.pb', 'Frozen tensorflow protobuf model output path')
 
-tf.app.flags.DEFINE_bool(
-    'tiny', False, 'Use tiny version of YOLOv4')
 tf.app.flags.DEFINE_integer(
     'size', 416, 'Image size')
 
 
 
 def main(argv=None):
-    if FLAGS.tiny:
-        model = yolo_v4_tiny.yolo_v4_tiny
-    else:
-        model = yolo_v4.yolo_v4
+    model = yolo_v4.yolo_v4
 
     classes = load_coco_names(FLAGS.class_names)
 
