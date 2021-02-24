@@ -38,7 +38,7 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 
 Tips:
 
-1. If you use other OpenVINO version,please use python or C++ inference demo provided by the OpenVINO you download!
+1. If you use other OpenVINO version,please use python or C++  YOLOV3 inference demo provided by the OpenVINO you download!
 
 2. How to use custom model:
 
