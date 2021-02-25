@@ -30,7 +30,10 @@ YOLOV4:https://github.com/AlexeyAB/darknet   and download weights file
 
 
 ## How to use
+★ This repository's object_detection_demo_yolov3_async.py and object_detection_demo_yolov4_async.py are OpenVINO2020R4 python demo.
 
+★ If you download other version,please use python or C++ YOLOV3 inference demo provided by the OpenVINO you downloaded(You could find it in your OpenVINO directory)
+ 
 ### YOLOV4
 
 download yolov4.weights .  
