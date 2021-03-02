@@ -18,21 +18,21 @@
 
 ## Environment
 
-OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html     or newer (please see FAQ Point 11)
+- OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html     or newer (please see FAQ Point 11)
 
-Win or Ubuntu
+- Win or Ubuntu
 
-Python 3.6.5
+- Python 3.6.5
 
-Tensorflow 1.12.0 （1.15.4 for OpenVINO2021.1   ,   1.15.5 for OpenVINO2021.2 ）
+- Tensorflow 1.12.0 （1.15.4 for OpenVINO2021.1   ,   1.15.5 for OpenVINO2021.2 ）
 
-YOLOV4:https://github.com/AlexeyAB/darknet   train your own model
+- YOLOV4:https://github.com/AlexeyAB/darknet   train your own model
 
-*Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
+- *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
 
 
 ## How to use
-★ This repository provides python inference demo for different OpenVINO version.
+★ This repository provides python inference demo for different OpenVINO version.[pythondemo](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/master/pythondemo)
 
 ★ Choose the right demo before you run object_detection_demo_yolov3_async.py
 
