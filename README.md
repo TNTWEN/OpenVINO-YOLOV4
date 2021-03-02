@@ -5,7 +5,7 @@
  This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny ,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l)in OpenVINO2020R4(or newer) .
 
  Based on https://github.com/mystic123/tensorflow-yolo-v3
- 
+
 ## Latest Progress
 - Pruned-OpenVINO-YOLO：https://github.com/TNTWEN/Pruned-OpenVINO-YOLO
 
@@ -22,21 +22,25 @@ OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html     or newer 
 
 Win or Ubuntu
 
-Tensorflow 1.12.0
+Python 3.6.5
 
-YOLOV4:https://github.com/AlexeyAB/darknet   and download weights file
+Tensorflow 1.12.0 （1.15.4 for OpenVINO2021.1   ,   1.15.5 for OpenVINO2021.2 ）
+
+YOLOV4:https://github.com/AlexeyAB/darknet   train your own model
 
 *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
 
 
 ## How to use
-★ This repository's object_detection_demo_yolov3_async.py and object_detection_demo_yolov4_async.py are OpenVINO2020R4 python demo.
+★ This repository provides python inference demo for different OpenVINO version.
 
-★ If you download other version,please use python or C++ YOLOV3 inference demo provided by the OpenVINO you downloaded(You could find it in your OpenVINO directory)
- 
+★ Choose the right demo before you run object_detection_demo_yolov3_async.py
+
+★ You could also use C++ inference demo provided by OpenVINO.
+
 ### YOLOV4
 
-download yolov4.weights .  
+prepare yolov4.weights .  
 
 ```
 #windows  default OpenVINO path
@@ -53,12 +57,7 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 ```
 
 
-This is OpenVINO2020R4 object_detection_demo_yolov3_async.py without any change,but objects can still be detected normally
-
-
  ![OpenVINOyolov4](assets/yolov4-416.png)
-
-CPU(intel i5-8250U)
 
 Compared with darknet:
  ![darknetyolov4](assets/darknet-v4-416.jpg)
@@ -102,7 +101,7 @@ python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_mod
 
 Compared with darknet:
  ![darknetyolov4tiny](assets/darknet-v4tiny-416.jpg)
-### object_detection_demo_yolov4_async.py
-(1)Add DIOU-NMS Support
+
+
 
 
