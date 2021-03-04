@@ -38,7 +38,7 @@
 
 ★ You could also use C++ inference demo provided by OpenVINO.
  
-  (OpenVINO2021.1 default C++ demo path：`C:\Program Files (x86)\Intel\openvino_2021.2.185\inference_engine\demos\multi_channel\object_detection_demo_yolov3`)
+  (OpenVINO2021.2 default C++ demo path：`C:\Program Files (x86)\Intel\openvino_2021.2.185\inference_engine\demos\multi_channel\object_detection_demo_yolov3`)
 
 ### YOLOV4
 
