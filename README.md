@@ -42,7 +42,7 @@
 
 ### YOLOV4
 
-prepare yolov4.weights .  
+download yolov4.weights .  
 
 ```
 #windows  default OpenVINO path
@@ -66,7 +66,7 @@ Compared with darknet:
 
 ### YOLOV4-relu
 
-download yolov4.weights .  
+prepare yolov4.weights .  
 
 ```
 #windows  default OpenVINO path
