@@ -431,7 +431,7 @@ def main():
 
             if not args.no_show:
                 cv2.imshow("Detection Results", frame)
-                key = cv2.waitKey(0)
+                key = cv2.waitKey(wait_key_time)
 
                 if key in {ord("q"), ord("Q"), 27}: # ESC key
                     break
