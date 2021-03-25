@@ -4,6 +4,8 @@
 
  This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l) in OpenVINO2021.3.
 
+**Support Intel CPU/GPU/VPU/NCS2**
+
  Based on https://github.com/mystic123/tensorflow-yolo-v3
 
 ## Latest Progress
@@ -25,6 +27,7 @@
 - Win or Ubuntu
 - Python 3.6.5
 - Tensorflow 1.15.5 （1.12.0 for OpenVINO2020.4 )
+- Inference device: Intel CPU/GPU/VPU/NCS2
 - YOLOV4:https://github.com/AlexeyAB/darknet   train your own model
 - *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
 
