@@ -9,16 +9,18 @@
 ## Latest Progress
 - Pruned-OpenVINO-YOLO：https://github.com/TNTWEN/Pruned-OpenVINO-YOLO
 
-  A tutorial on pruning the YOLOv3/v4 model(find the most compact model structure for the current detection task)and deploying it on OpenVINO which can even meet the simultaneous inference of multiple video streams. Both Chinese and English versions are available. Welcome to have a try!
+  A tutorial on pruning the YOLOv3/v4/v4-tiny/v4-tiny-3l model(**find the most compact model structure for the current detection task,greatly compress your model and improve detection FPS**)and deploying it in OpenVINO ,which can even meet the simultaneous inference of multiple video streams. Both Chinese and English versions are available. Welcome to have a try!
 
 - YOLOV4-tiny-3l:https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l      Welcome to have a try!
+
+- OpenVINO 2021.3 AND OpenVINO2020.4 fully supports the project！
 
 ## FAQ 
 [FAQ](https://github.com/TNTWEN/OpenVINO-YOLOV4/issues/10)
 
 ## Environment
 
-- OpenVINO2021.3 :https://docs.openvinotoolkit.org/latest/index.html     or OpenVINO2020.4
+- OpenVINO2021.3 :https://docs.openvinotoolkit.org/latest/index.html or OpenVINO2020.4
 - If you want to use yolov4+GPU+FP16,please don't use OpenVINO 2021.1 and OpenVINO2021.2
 - Win or Ubuntu
 - Python 3.6.5
