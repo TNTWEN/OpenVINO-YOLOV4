@@ -2,7 +2,7 @@
 
 ## Introduction
 
- This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny ,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l)in OpenVINO2020R4(or newer) .
+ This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny ,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l)in OpenVINO2021.3.
 
  Based on https://github.com/mystic123/tensorflow-yolo-v3
 
@@ -18,16 +18,12 @@
 
 ## Environment
 
-- OpenVINO2020R4 :https://docs.openvinotoolkit.org/latest/index.html     or newer (please see FAQ Point 11)
-
+- OpenVINO2021.3 :https://docs.openvinotoolkit.org/latest/index.html     or OpenVINO2020.4
+- If you want to use yolov4+GPU+FP16,please don't use OpenVINO 2021.1 and OpenVINO2021.2
 - Win or Ubuntu
-
 - Python 3.6.5
-
-- Tensorflow 1.12.0 （1.15.4 for OpenVINO2021.1   ,   1.15.5 for OpenVINO2021.2 ）
-
+- Tensorflow 1.15.5 （1.12.0 for OpenVINO2020.4 )
 - YOLOV4:https://github.com/AlexeyAB/darknet   train your own model
-
 - *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
 
 
@@ -37,8 +33,8 @@
 ★ Choose the right demo before you run object_detection_demo_yolov3_async.py
 
 ★ You could also use C++ inference demo provided by OpenVINO.
- 
-  (OpenVINO2021.2 default C++ demo path：`C:\Program Files (x86)\Intel\openvino_2021.2.185\inference_engine\demos\multi_channel\object_detection_demo_yolov3`)
+
+  (OpenVINO2021.3 default C++ demo path：`C:\Program Files (x86)\Intel\openvino_2021.3.394\deployment_tools\open_model_zoo\demos\multi_channel_object_detection_demo_yolov3\cpp`)
 
 ### YOLOV4
 
@@ -49,9 +45,9 @@ download yolov4.weights .
 
 python convert_weights_pb.py --class_names cfg/coco.names --weights_file yolov4.weights --data_format NHWC
 
-"C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
+"C:\Program Files (x86)\Intel\openvino_2021\bin\setupvars.bat"
 
-python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools\model_optimizer\mo.py" --input_model frozen_darknet_yolov4_model.pb --transformations_config yolov4.json --batch 1 --reverse_input_channels
+python "C:\Program Files (x86)\Intel\openvino_2021.3.394\deployment_tools\model_optimizer\mo.py" --input_model frozen_darknet_yolov4_model.pb --transformations_config yolov4.json --batch 1 --reverse_input_channels
 
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 
@@ -74,9 +70,9 @@ cd yolov4-relu
 
 python convert_weights_pb.py --class_names cfg/coco.names --weights_file yolov4.weights --data_format NHWC
 
-"C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
+"C:\Program Files (x86)\Intel\openvino_2021\bin\setupvars.bat"
 
-python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools\model_optimizer\mo.py" --input_model frozen_darknet_yolov4_model.pb --transformations_config yolov4.json --batch 1 --reverse_input_channels
+python "C:\Program Files (x86)\Intel\openvino_2021.3.394\deployment_tools\model_optimizer\mo.py" --input_model frozen_darknet_yolov4_model.pb --transformations_config yolov4.json --batch 1 --reverse_input_channels
 
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
@@ -92,9 +88,9 @@ download yolov4-tiny.weights .
 
 python convert_weights_pb.py --class_names cfg/coco.names --weights_file yolov4-tiny.weights --data_format NHWC --tiny
 
-"C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
+"C:\Program Files (x86)\Intel\openvino_2021\bin\setupvars.bat"
 
-python "C:\Program Files (x86)\IntelSWTools\openvino_2020.4.287\deployment_tools\model_optimizer\mo.py" --input_model frozen_darknet_yolov4_model.pb --transformations_config yolo_v4_tiny.json --batch 1 --reverse_input_channels
+python "C:\Program Files (x86)\Intel\openvino_2021.3.394\deployment_tools\model_optimizer\mo.py" --input_model frozen_darknet_yolov4_model.pb --transformations_config yolo_v4_tiny.json --batch 1 --reverse_input_channels
 
 python object_detection_demo_yolov3_async.py -i cam -m frozen_darknet_yolov4_model.xml  -d CPU
 ```
