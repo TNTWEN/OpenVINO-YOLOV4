@@ -2,7 +2,7 @@
 
 ## Introduction
 
- This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny ,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l)in OpenVINO2021.3.
+ This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l) in OpenVINO2021.3.
 
  Based on https://github.com/mystic123/tensorflow-yolo-v3
 
