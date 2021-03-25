@@ -15,7 +15,7 @@
 
 - YOLOV4-tiny-3l:https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l      Welcome to have a try!
 
-- OpenVINO 2021.3 AND OpenVINO2020.4 fully supports the project！
+- OpenVINO 2021.3 AND OpenVINO2020.4 fully support the project！
 
 ## FAQ 
 [FAQ](https://github.com/TNTWEN/OpenVINO-YOLOV4/issues/10)
