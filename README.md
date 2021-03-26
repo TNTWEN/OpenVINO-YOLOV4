@@ -54,3 +54,13 @@ prepare for future model pruning:
 - namespace:
 
   ![image-20210326202822913](assets/image-20210326202822913.png)
+  
+  
+
+## Reference
+
+https://github.com/AlexeyAB/darknet
+
+https://github.com/WongKinYiu/ScaledYOLOv4/tree/main
+
+https://github.com/Chen-MingChang/pytorch_YOLO_OpenVINO_demo
