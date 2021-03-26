@@ -2,7 +2,7 @@
 
 ## Introduction
 
- This is full implementation of YOLOV4  series in OpenVINO2021.3.
+ This is full implementation of [YOLOV4  series](https://github.com/AlexeyAB/darknet) in OpenVINO2021.3.
 
  Based on https://github.com/mystic123/tensorflow-yolo-v3
 
