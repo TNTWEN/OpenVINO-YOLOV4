@@ -2,20 +2,39 @@
 
 ## Introduction
 
- This is full implementation of YOLOV4,YOLOV4-relu,YOLOV4-tiny,[YOLOV4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l) in OpenVINO2021.3.
-
-**Support Intel CPU/GPU/VPU/NCS2**
+ This is full implementation of YOLOV4  series in OpenVINO2021.3.
 
  Based on https://github.com/mystic123/tensorflow-yolo-v3
+
+**Supported model**
+
+- YOLOv4
+- YOLOv4-relu
+- YOLOv4-tiny
+- [YOLOv4-tiny-3l](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l)
+- [YOLOv4-csp](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/ScaledYOLOv4)
+- [YOLOv4x-mish](https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/ScaledYOLOv4)
+
+**Supported device**
+
+- Intel CPU
+- Intel GPU
+- HDDL VPU
+- NCS2
+- ...   ...
+
+
 
 ## Latest Progress
 - Pruned-OpenVINO-YOLO：https://github.com/TNTWEN/Pruned-OpenVINO-YOLO
 
   A tutorial on pruning the YOLOv3/v4/v4-tiny/v4-tiny-3l model(**find the most compact model structure for the current detection task,greatly compress your model and improve detection FPS**)and deploying it in OpenVINO which can even meet the simultaneous inference of multiple video streams. Both Chinese and English versions are available. Welcome to have a try!
 
-- YOLOV4-tiny-3l:https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l      Welcome to have a try!
+- YOLOv4-tiny-3l:https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/v4-tiny-3l      Welcome to have a try!
 
 - OpenVINO 2021.3 AND OpenVINO2020.4 fully support the project！
+
+- YOLOv4-csp and YOLOv4x-mish :https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/ScaledYOLOv4
 
 ## FAQ 
 [FAQ](https://github.com/TNTWEN/OpenVINO-YOLOV4/issues/10)
@@ -27,7 +46,6 @@
 - Win or Ubuntu
 - Python 3.6.5
 - Tensorflow 1.15.5 （1.12.0 for OpenVINO2020.4 )
-- Inference device: Intel CPU/GPU/VPU/NCS2
 - YOLOV4:https://github.com/AlexeyAB/darknet   train your own model
 - *Convert YOLOV3/2/1 model :https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html
 
