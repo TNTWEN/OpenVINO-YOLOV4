@@ -4,6 +4,10 @@ OpenVINO 2021.3
 
 Tensorflow 1.15.5
 
+Win/Ubuntu
+
+Only python inference demo now
+
 ```
 python convert_weights_pb.py --class_names cfg/coco.names --weights_file yolov4-csp.weights --data_format NHWC
 
@@ -28,6 +32,14 @@ prepare for future model pruning:
 ![image-20210326201432768](assets/image-20210326201432768.png)
 
 # YOLOv4x-mish
+
+OpenVINO 2021.3
+
+Tensorflow 1.15.5
+
+Win/Ubuntu
+
+Only python inference demo now
 
 ```
 python convert_weights_pb.py --class_names cfg/coco.names --weights_file yolov4x-mish.weights --data_format NHWC
