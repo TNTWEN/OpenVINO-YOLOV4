@@ -22,8 +22,8 @@ python ../yolov4-inference-demo.py -i test-pic1.png -d CPU -m frozen_darknet_yol
 
 prepare for future model pruning:
 
-- parse_config.py
-- namespace:
+- parse_config.py ：Generate tensorflow model conversion code automatically according to darknet .cfg file 
+- namespace: Output of convert_weights_pb.py which is used for mo.py's `--output`
 
 ![image-20210326201432768](assets/image-20210326201432768.png)
 
@@ -49,9 +49,9 @@ python ../yolov4-inference-demo.py -i test-pic1.png -d CPU -m frozen_darknet_yol
 
 prepare for future model pruning:
 
-- parse_config.py
+- parse_config.py : Generate tensorflow model conversion code automatically according to darknet .cfg file 
 
-- namespace:
+- namespace: Output of convert_weights_pb.py which is used for mo.py's `--output`
 
   ![image-20210326202822913](assets/image-20210326202822913.png)
   
