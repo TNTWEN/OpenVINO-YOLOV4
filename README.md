@@ -23,7 +23,9 @@
 - NCS2
 - ...   ...
 
-
+**Supported inference demo**
+- Python demo:all models
+- C++    demo:YOLOv4,YOLOv4-relu,YOLOv4-tiny,YOLOv4-tiny-3l
 
 ## Development log
 - Pruned-OpenVINO-YOLO：https://github.com/TNTWEN/Pruned-OpenVINO-YOLO
