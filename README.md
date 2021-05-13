@@ -138,7 +138,7 @@ Compared with darknet:
 
 ## INT8 Quantization 
 
-Thanks for [Jackey](https://github.com/jayer95)'s excellent work!
+Thanks for [Jacky](https://github.com/jayer95)'s excellent work!
 
 Ref:https://docs.openvinotoolkit.org/latest/pot_README.html
 
@@ -148,7 +148,7 @@ Environment:
 - Ubuntu 18.04  ★
 - Intel CPU/GPU
 
-Step 1：Dataset Conversion
+**Step 1：Dataset Conversion**
 
 we should convert YOLO dataset to OpenVINO supported formats first.
 
@@ -175,7 +175,7 @@ cd INT8
 python3 yolo-txt_to_coco-json.py --root_dir coco128 --save_path output.json
 ```
 
-Step 2: Install Accuracy-checker and POT
+**Step 2: Install Accuracy-checker and POT**
 
 ```
 sudo apt-get install python3 python3-dev python3-setuptools python3-pip
@@ -188,7 +188,7 @@ cd /opt/intel/openvino_2021.3.394/deployment_tools/tools/post_training_optimizat
 sudo python3 setup.py install
 ```
 
- Step 3: INT8 Quantization using POT
+ **Step 3: INT8 Quantization using POT**
 
 ​	Prepare your yolo IR model(FP32/FP16) first.
 
@@ -228,7 +228,7 @@ pot -c yolov4_416x416_qtz.json --output-dir backup -e
 
 - There are many other quantization strategies to choose from, and the relevant parameters are annotated in yolov4_416x416_qtz.json.Select the strategy you want to replace the default strategy and try by yourself!
 
-Step 4: Test IR model's map using Accuracy-checker 
+**Step 4: Test IR model's map using Accuracy-checker** 
 
 ```
 #source '/opt/intel/openvino_2021.3.394/bin/setupvars.sh'
