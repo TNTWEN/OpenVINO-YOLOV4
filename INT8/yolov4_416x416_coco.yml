@@ -1,0 +1,53 @@
+models:
+  - name: yolov4
+    launchers:
+      - framework: dlsdk
+        model: models/yolov4/FP16/frozen_darknet_yolov4_model.xml
+        weights: models/yolov4/FP16/frozen_darknet_yolov4_model.bin
+        adapter:
+          type: yolo_v3
+          anchors: 12, 16, 19, 36, 40, 28, 36, 75, 76, 55, 72, 146, 142, 110, 192, 243, 459, 401
+          num: 9
+          coords: 4
+          classes: 80
+          threshold: 0.001
+          anchor_masks: [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+          raw_output: True
+          outputs:
+            - detector/yolo-v4/Conv_1/BiasAdd/YoloRegion
+            - detector/yolo-v4/Conv_9/BiasAdd/YoloRegion
+            - detector/yolo-v4/Conv_17/BiasAdd/YoloRegion
+    datasets:
+      - name: coco128
+        preprocessing:
+          - type: bgr_to_rgb
+          - type: resize
+            size: 416
+        postprocessing:
+          - type: resize_prediction_boxes
+          - type: filter
+            apply_to: prediction
+            min_confidence: 0.001
+            remove_filtered: true
+          - type: diou_nms
+            overlap: 0.5
+          - type: clip_boxes
+            apply_to: prediction
+        annotation_conversion:
+          converter: mscoco_detection
+          annotation_file: ./coco128/annotations/output.json
+        data_source: ./coco128/images
+        metrics:
+          - type: map
+            integral: max
+            ignore_difficult: true
+            overlap_threshold: 0
+            presenter: print_scalar
+          - name: AP@0.5
+            type: coco_precision
+            max_detections: 10
+            threshold: 0.5
+          - name: AP@0.5:0.05:95
+            type: coco_precision
+            max_detections: 10
+            threshold: '0.5:0.05:0.95'

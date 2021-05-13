@@ -23,7 +23,14 @@
 - NCS2
 - ...   ...
 
+**Supported model precision**
+
+- FP32 
+- FP16
+- [INT8 Quantization](##INT8 Quantization)
+
 **Supported inference demo**
+
 - Python demo:all models
 - C++    demo:YOLOv4,YOLOv4-relu,YOLOv4-tiny,YOLOv4-tiny-3l
 
@@ -37,6 +44,8 @@
 - OpenVINO 2021.3 AND OpenVINO2020.4 fully support the project！
 
 - YOLOv4-csp and YOLOv4x-mish :https://github.com/TNTWEN/OpenVINO-YOLOV4/tree/ScaledYOLOv4
+
+- Add INT8 Quantization support. Pruned-YOLOv4 series model+ INT8 Quantization  will be very friendly to embedded devices
 
 ## FAQ 
 [FAQ](https://github.com/TNTWEN/OpenVINO-YOLOV4/issues/10)
@@ -127,4 +136,134 @@ Compared with darknet:
 
 
 
+## INT8 Quantization 
 
+Thanks for [Jackey](https://github.com/jayer95)'s excellent work!
+
+Ref:https://docs.openvinotoolkit.org/latest/pot_README.html
+
+Environment:
+
+- OpenVINO2021.3
+- Ubuntu 18.04  ★
+- Intel CPU/GPU
+
+Step 1：Dataset Conversion
+
+we should convert YOLO dataset to OpenVINO supported formats first.
+
+
+
+|--annotations
+
+​	|-- output.json    #output of convert.py , COCO-JSON format
+
+|--images
+
+​	|--  *.jpg      #put all the images here
+
+|--labels
+
+​	|--*.txt        #put all the YOLO format .txt labels here
+
+|--classes.txt  
+
+we use coco128 for example:
+
+```
+cd INT8
+python3 yolo-txt_to_coco-json.py --root_dir coco128 --save_path output.json
+```
+
+Step 2: Install Accuracy-checker and POT
+
+```
+sudo apt-get install python3 python3-dev python3-setuptools python3-pip
+
+cd /opt/intel/openvino_2021.3.394/deployment_tools/open_model_zoo/tools/accuracy_checker 
+sudo python3 setup.py install
+
+
+cd /opt/intel/openvino_2021.3.394/deployment_tools/tools/post_training_optimization_toolkit
+sudo python3 setup.py install
+```
+
+ Step 3: INT8 Quantization using POT
+
+​	Prepare your yolo IR model(FP32/FP16) first.
+
+```
+source '/opt/intel/openvino_2021.3.394/bin/setupvars.sh'
+
+pot -c yolov4_416x416_qtz.json --output-dir backup -e
+```
+
+​	Parameters you need to set in yolov4_416x416_qtz.json:
+
+- Line 4,5 :Set FP32/FP16 YOLO IR model 's path
+
+  ```
+  "model":"models/yolov4/FP16/frozen_darknet_yolov4_model.xml",
+  "weights":"models/yolov4/FP16/frozen_darknet_yolov4_model.bin"
+  ```
+
+- Line 29,30 :Set image width and height
+
+  ```
+  "dst_width": 416,
+  "dst_height": 416
+  ```
+
+- Line 38: Annotation_file(COCO JSON file)
+
+  ```
+  "annotation_file": "./coco128/annotations/output.json"
+  ```
+
+- Line 40: Path of images
+
+  ```
+  "data_source": "./coco128/images",
+  ```
+
+- There are many other quantization strategies to choose from, and the relevant parameters are annotated in yolov4_416x416_qtz.json.Select the strategy you want to replace the default strategy and try by yourself!
+
+Step 4: Test IR model's map using Accuracy-checker 
+
+```
+#source '/opt/intel/openvino_2021.3.394/bin/setupvars.sh'
+accuracy_check -c yolov4_416x416_coco.yml -td CPU #-td GPU will be faster
+```
+
+​	Parameters you need to set in yolov4_416x416_qtz.json:
+
+- Line 5,6 ： Set IR model 's path
+
+  ```
+  model: models/yolov4/FP16/frozen_darknet_yolov4_model.xml
+  weights: models/yolov4/FP16/frozen_darknet_yolov4_model.bin
+  ```
+
+- Line 12: number of classes
+
+  ```
+  classes: 80
+  ```
+
+- Line 25: Image size
+
+  ```
+  size: 416
+  ```
+
+- Line 38:Annotation_file(COCO JSON file)
+
+  ```
+  annotation_file: ./coco128/annotations/output.json
+  ```
+
+- Line 39: Path of images
+
+  ```
+  data_source: ./coco128/images
+  ```

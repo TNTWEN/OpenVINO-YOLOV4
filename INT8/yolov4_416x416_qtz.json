@@ -1,0 +1,217 @@
+{
+    "model": {
+        "model_name": "yolov4",
+        "model": "models/yolov4/FP16/frozen_darknet_yolov4_model.xml",
+        "weights": "models/yolov4/FP16/frozen_darknet_yolov4_model.bin"
+    },
+    "engine": {
+        "launchers": [
+            {
+                "framework": "dlsdk",
+                "adapter": {
+                    "type": "yolo_v3",
+                    "anchors": "12.0, 16.0, 19.0, 36.0, 40.0, 28.0, 36.0, 75.0, 76.0, 55.0, 72.0, 146.0, 142.0, 110.0, 192.0, 243.0, 459.0, 401.0",
+                    "classes": 80,
+                    "coords": 4,
+                    "num": 9,
+                    "threshold": 0.001,
+                    "anchor_masks": [[0, 1, 2], [3, 4, 5], [6, 7, 8]],
+                    "outputs": ["detector/yolo-v4/Conv_1/BiasAdd/YoloRegion", "detector/yolo-v4/Conv_9/BiasAdd/YoloRegion", "detector/yolo-v4/Conv_17/BiasAdd/YoloRegion"]
+                }
+            }
+        ],
+        "datasets": [
+            {
+                "name": "license_plate",
+                "preprocessing": [
+                    {
+                        "type": "resize",
+                        "dst_width": 416,
+                        "dst_height": 416
+                    },
+                    {
+                        "type": "bgr_to_rgb"
+                    }
+                ],
+                "annotation_conversion": {
+                    "converter": "mscoco_detection",
+                    "annotation_file": "./coco128/annotations/output.json"
+                },
+                "data_source": "./coco128/images",
+                "postprocessing": [
+                    {
+                        "type": "resize_prediction_boxes"
+                    },
+                    {
+                        "type": "filter",
+                        "apply_to": "prediction",
+                        "min_confidence": 0.001,
+                        "remove_filtered": true
+                    },
+                    {
+                        "type": "diou_nms",
+                        "overlap": 0.5
+                    },
+                    {
+                        "type": "clip_boxes",
+                        "apply_to": "prediction"
+                    }
+                ],
+                "metrics": [
+                    {
+                        "type": "map",
+                        "integral": "max",
+                        "ignore_difficult": true,
+                        "overlap_threshold": 0,
+                        "presenter": "print_scalar"
+                    },
+                    {
+                        "name": "AP@0.5",
+                        "type": "coco_precision",
+                        "max_detections": 10,
+                        "threshold": 0.5
+                    },
+                    {
+                        "name": "AP@0.5:0.05:95",
+                        "type": "coco_precision",
+                        "max_detections": 10,
+                        "threshold": "0.5:0.05:0.95"
+                    }
+                ]
+            }
+        ]
+    },
+    "compression": {
+      "target_device": "ANY", // Target device, the specificity of which will be taken into account during optimization.
+                              // The default value "ANY" stands for compatible quantization supported by any HW.
+      "algorithms": [
+        {
+          "name": "DefaultQuantization", // Optimization algorithm name
+          "params": {
+            "preset": "mixed", // Preset [performance, mixed] which control the quantization
+                                     // mode (symmetric, mixed (weights symmetric and activations asymmetric)
+                                     // and fully asymmetric respectively)
+            "stat_subset_size": 300  // Size of subset to calculate activations statistics that can be used
+                                     // for quantization parameters calculation
+          },
+          "use_fast_bias": false
+        }
+      ]
+    }
+    // "compression": {
+    //     "target_device": "ANY", // Target device, the specificity of which will be taken into account during optimization.
+    //                             // The default value "ANY" stands for compatible quantization supported by any HW.
+    //     "algorithms": [
+    //         {
+    //             "name": "AccuracyAwareQuantization", // Optimization algorithm name
+    //             "params": {
+    //                 "preset": "mixed", // Preset [performance, mixed, accuracy] which control the quantization
+    //                                          // mode (symmetric, mixed (weights symmetric and activations asymmetric)
+    //                                          // and fully asymmetric respectively)
+ 
+    //                 "stat_subset_size": 300, // Size of subset to calculate activations statistics that can be used
+    //                                          // for quantization parameters calculation
+ 
+    //                 "maximal_drop": 0.005 // Maximum accuracy drop which has to be achieved after the quantization
+    //             }
+    //         }
+    //     ]
+    // }
+    // "optimizer": {
+    //     "name": "Tpe",
+    //     "params": {
+    //         "max_trials": 200,
+    //         "trials_load_method": "cold_start",
+    //         "accuracy_loss": 0.1,
+    //         "latency_reduce": 1.5,
+    //         "accuracy_weight": 1.0,
+    //         "latency_weight": 0.0,
+    //         "benchmark": {
+    //             "performance_count": false,
+    //             "batch_size": 1,
+    //             "nthreads": 8,
+    //             "nstreams": 1,
+    //             "nireq": 1,
+    //             "api_type": "async",
+    //             "niter": 1,
+    //             "duration_seconds": 30,
+    //             "benchmark_app_dir": "" // Path to benchmark_app If not specified, Python base benchmark will be used. Use benchmark_app to reduce jitter in results.
+    //         }
+    //     }
+    // },
+    // "compression": {
+    //     "target_device": "ANY",
+    //     "algorithms": [
+    //         {
+    //             "name": "ActivationChannelAlignment",
+    //             "params": {
+    //                 "stat_subset_size": 300
+    //             }
+    //         },
+    //         {
+    //             "name": "TunableQuantization",
+    //             "params": {
+    //                 "stat_subset_size": 300,
+    //                 "preset": "performance",
+    //                 "tuning_scope": ["range_estimator"],
+    //                 "estimator_tuning_scope": ["preset", "outlier_prob"],
+    //                 "outlier_prob_choices": [1e-3, 1e-4, 1e-5]
+    //             }
+    //         },
+    //         {
+    //             "name": "FastBiasCorrection",
+    //             "params": {
+    //                 "stat_subset_size": 300
+    //             }
+    //         }
+    //     ]
+    // }
+    // "optimizer": {
+    //     "name": "Tpe",
+    //     "params": {
+    //         "max_trials": 200,
+    //         "trials_load_method": "cold_start",
+    //         "accuracy_loss": 0.1,
+    //         "latency_reduce": 1.5,
+    //         "accuracy_weight": 1.0,
+    //         "latency_weight": 1.0,
+    //         "benchmark": {
+    //             "performance_count": false,
+    //             "batch_size": 1,
+    //             "nthreads": 8,
+    //             "nstreams": 1,
+    //             "nireq": 1,
+    //             "api_type": "async",
+    //             "niter": 1,
+    //             "duration_seconds": 30,
+    //             "benchmark_app_dir": "" // Path to benchmark_app If not specified, Python base benchmark will be used. Use benchmark_app to reduce jitter in results.
+    //         }
+    //     }
+    // },
+    // "compression": {
+    //     "target_device": "ANY",
+    //     "algorithms": [
+    //         {
+    //             "name": "ActivationChannelAlignment",
+    //             "params": {
+    //                 "stat_subset_size": 300
+    //             }
+    //         },
+    //         {
+    //             "name": "TunableQuantization",
+    //             "params": {
+    //                 "stat_subset_size": 300,
+    //                 "preset": "performance",
+    //                 "tuning_scope": ["layer"]
+    //             }
+    //         },
+    //         {
+    //             "name": "FastBiasCorrection",
+    //             "params": {
+    //                 "stat_subset_size": 300
+    //             }
+    //         }
+    //     ]
+    // }
+}
+
