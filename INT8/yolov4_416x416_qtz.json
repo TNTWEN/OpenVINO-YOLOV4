@@ -22,7 +22,7 @@
         ],
         "datasets": [
             {
-                "name": "license_plate",
+                "name": "coco",
                 "preprocessing": [
                     {
                         "type": "resize",
