@@ -27,7 +27,7 @@
 
 - FP32 
 - FP16
-- [INT8 Quantization](##INT8 Quantization)
+- [INT8 Quantization](https://github.com/TNTWEN/OpenVINO-YOLOV4#int8-quantization)
 
 **Supported inference demo**
 
