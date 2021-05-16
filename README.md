@@ -172,7 +172,7 @@ we use coco128 for example:
 
 ```
 cd INT8
-python3 yolo-txt_to_coco-json.py --root_dir coco128 --save_path output.json
+python3 convert.py --root_dir coco128 --save_path output.json
 ```
 
 **Step 2: Install Accuracy-checker and POT**
