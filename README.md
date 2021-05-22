@@ -145,7 +145,7 @@ Ref:https://docs.openvinotoolkit.org/latest/pot_README.html
 Environment:
 
 - OpenVINO2021.3
-- Ubuntu 18.04  ★
+- Ubuntu 18.04/20.04  ★
 - Intel CPU/GPU
 
 **Step 1：Dataset Conversion**
